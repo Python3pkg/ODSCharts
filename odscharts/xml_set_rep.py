@@ -1,7 +1,7 @@
 # Python 2 and 3
-from __future__ import unicode_literals
-from __future__ import absolute_import
-from __future__ import print_function
+
+
+
 
 """
 Represents an xml file as a tree of set objects
@@ -78,7 +78,7 @@ class SetRep( TemplateXML_File ):
             descL.append( 'TEXT|'+'%s'%elem.text )
             descL.append( 'TAIL|'+'%s'%elem.tail )
             
-            for qname,v in elem.attrib.items():
+            for qname,v in list(elem.attrib.items()):
                 short_name = self.qnameOD[qname]
                 descL.append( 'ATTR|'+short_name+'|'+v )
             

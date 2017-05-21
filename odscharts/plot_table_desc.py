@@ -1,7 +1,7 @@
 # Python 2 and 3
-from __future__ import unicode_literals
-from __future__ import absolute_import
-from __future__ import print_function
+
+
+
 """
 A PlotTableDesc object holds the XML logic as well as all info about a
 scatter plot table
@@ -77,7 +77,7 @@ class PlotTableDesc(object):
 
         def NS_attrib( attD ):
             D = {}
-            for key,val in attD.items():
+            for key,val in list(attD.items()):
                 D[ NS(key) ] = val
             return D
 
@@ -119,7 +119,7 @@ class PlotTableDesc(object):
             if hasattr(obj,'tag'):
                 add_tag( obj.tag )
             if hasattr(obj, 'attrib'):
-                for q,v in obj.attrib.items():
+                for q,v in list(obj.attrib.items()):
                     add_tag( q )
 
         for parent in newsheet.iter():

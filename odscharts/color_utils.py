@@ -1,7 +1,7 @@
 # Python 2 and 3
-from __future__ import unicode_literals
-from __future__ import absolute_import
-from __future__ import print_function
+
+
+
 import re
 import colorsys
 
@@ -42,7 +42,7 @@ def hex_to_rgb(hex_str):
     """
     if hex_str.startswith('#'):
         hex_str = hex_str[1:]
-    ans_tup = tuple([int(hex_str[i:i + 2], 16) for i in xrange(0, len(hex_str), 2)])
+    ans_tup = tuple([int(hex_str[i:i + 2], 16) for i in range(0, len(hex_str), 2)])
     #print 'for',hex_str,'ans_tup=',ans_tup
     return ans_tup
 
@@ -55,7 +55,7 @@ def hex_to_rgbfloat(hex_str):
     """
     if hex_str.startswith('#'):
         hex_str = hex_str[1:]
-    ans_tup = tuple([int(hex_str[i:i + 2], 16) for i in xrange(0, len(hex_str), 2)])
+    ans_tup = tuple([int(hex_str[i:i + 2], 16) for i in range(0, len(hex_str), 2)])
     #print 'for',hex_str,'ans_tup=',ans_tup
     return tuple([round(float(c)/255, 8) for c in ans_tup])
 

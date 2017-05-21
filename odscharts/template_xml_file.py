@@ -1,7 +1,7 @@
 # Python 2 and 3
-from __future__ import unicode_literals
-from __future__ import absolute_import
-from __future__ import print_function
+
+
+
 
 import sys
 from collections import OrderedDict
@@ -15,7 +15,7 @@ else:
 
 # get StringIO for either python 2.x or 3.x
 try:
-    from StringIO import StringIO
+    from io import StringIO
 except ImportError:
     from io import StringIO
 
@@ -74,7 +74,7 @@ class TemplateXML_File(object):
                     uri = sL[0][1:]
                     self.qnameOD[elem.tag] = '%s:%s'%(self.nsOD[uri], name)
 
-                for qname,v in elem.attrib.items():
+                for qname,v in list(elem.attrib.items()):
                     sL = qname.split('}')
                     if len(sL) == 2:
                         name = sL[1]
@@ -130,7 +130,7 @@ class TemplateXML_File(object):
             except:
                 print( 'NOTICE: No children for:', parent )
                 
-        for key,item in self.original_posD.items():
+        for key,item in list(self.original_posD.items()):
             self.get_elem_from_orig_posD[item] = key # get elem from original_posD
 
     def get_short_path(self, elem):
@@ -230,7 +230,7 @@ class TemplateXML_File(object):
 
     def NS_attrib(self, attD ):
         D = OrderedDict()
-        for key,val in attD.items():
+        for key,val in list(attD.items()):
             D[ self.NS(key) ] = val
         return D
 
@@ -258,7 +258,7 @@ class TemplateXML_File(object):
             uri = sL[0][1:]
             self.qnameOD[my_new_elem.tag] = '%s:%s'%(self.nsOD[uri], name)
 
-        for qname,v in my_new_elem.attrib.items():
+        for qname,v in list(my_new_elem.attrib.items()):
             sL = qname.split('}')
             if len(sL) == 2:
                 name = sL[1]
@@ -282,7 +282,7 @@ if __name__ == "__main__":
     print( 'ss2 =',ss2,'  (Should be None since can NOT search on tag)' )
 
     #print( TFile.findall( 'table:table', elem_obj=ss ) )
-    print
+    print()
     #print( TFile.qnameOD.items()[:2] )
 
     newtab1 = TFile.new_elem( '{urn:oasis:names:tc:opendocument:xmlns:table:1.0}table', attribOD=None)
@@ -293,4 +293,4 @@ if __name__ == "__main__":
 
     newtab3 = TFile.new_elem( 'table:table', attribOD={'table:name':'Sheet1'})
     print( 'newtab3 =',newtab3 )
-    print( 'newtab3 =',newtab3.items() )
+    print( 'newtab3 =',list(newtab3.items()) )
